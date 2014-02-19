@@ -1,0 +1,17 @@
+<div class="container">
+  <h1>Welcome to Shorty!</h1>
+  <p>Please insert an URL into Shorty to get it shortified</p>
+
+  <form action="/generate" method="POST">
+
+    <input type="text" name="long_url" placeholder="e.g. http://www.devbootcamp.com/some/random/path/that_are_very_long.htm">
+    <input type="submit" value="Generate short URL">
+
+  </form>
+  <% if @short_url != nil %>
+    <p> Your shortified URL is: </p>
+    <p><a href = "/<%= @short_url %>">http://localhost:9393/<%= @short_url %></a></p>
+  <% else %>
+    <p>Please enter a URL</p>
+  <%end%>
+</div>
