@@ -1,17 +1,19 @@
 <div class="container">
   <h1>Welcome to Shorty!</h1>
+  <% if @message %>
+    <p><%= @message%></p>
+    <% end %>
   <p>Please insert an URL into Shorty to get it shortified</p>
 
   <form action="/generate" method="POST">
-
     <input type="text" name="long_url" placeholder="e.g. http://www.devbootcamp.com/some/random/path/that_are_very_long.htm">
     <input type="submit" value="Generate short URL">
-
   </form>
-  <% if @short_url != nil %>
-    <p> Your shortified URL is: </p>
-    <p><a href = "/url/<%= @short_url %>">http://localhost:9393/url/<%= @short_url %></a></p>
-  <% else %>
-    <p>Please enter a URL</p>
-  <%end%>
+
+  <h3><%= @user.name %>'s URL's :</h3>
+  <ul>
+    <% @user.urls.each do |url| %>
+      <li><a href="http://localhost:9393/url/<%= url.short_url%>" >http://localhost:9393/url/<%= url.short_url%></a></li>
+    <% end %>
+  </ul>
 </div>

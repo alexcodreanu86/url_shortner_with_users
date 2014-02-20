@@ -7,3 +7,12 @@
 th {
   text-align: left;
 }
+
+
+body {
+  width: 800px;
+  margin: auto;
+}
+#login {
+  margin: 30px 0 0 0 ;
+}

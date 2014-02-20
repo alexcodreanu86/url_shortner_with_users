@@ -10,19 +10,22 @@ post '/generate' do
       @short_url = a.short_url
     else
       puts "not found. Create---------------------------------"
-      p a = Url.create(long_url: params["long_url"])
+       a = Url.create(long_url: params["long_url"])
       puts " created -----------------------------"
       @short_url = a.short_url
     end
 
+    if session[:message] == "logged in"
+      User.find(session[:user_id]).urls << a
+    end
     erb :shorty
   else
-    @message = "URL invalid or not found"
+    @message = "Please insert a valid URL"
     erb :index
   end
 end
 
-get '/:short_url' do
+get '/url/:short_url' do
   @shorty = Url.find_by(short_url: params[:short_url])
   if @shorty
     @shorty.count += 1
